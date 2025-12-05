@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<title>Resultados Social Media</title>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #062b28;
+        margin: 0;
+        padding: 20px;
+        color: #ffffff;
+    }
+
+    h1 {
+    text-align: center;
+    color: #e3ff3d;
+    margin-bottom: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700; /* opcional, deixa mais forte */
+}
+
+    .periodo {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .card {
+        background: #0c3d3a;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        min-height: 120px;
+    }
+
+    .card h3 {
+        margin: 0;
+        font-size: 1rem;
+        opacity: 0.8;
+    }
+
+    .card p {
+        margin: 10px 0 0;
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #ffdfdf;
+    }
+
+    .subtitle-box {
+        grid-column: 1 / -1;
+        background: #0c3d3a;
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 10px;
+    }
+
+    .subtitle-box p {
+        margin: 6px 0;
+        font-size: 1rem;
+    }
+    /* Versão aprimorada com responsividade e estilo Envida Rio */
+    :root {
+        --verde-limao: #ccff00;
+        --verde-escuro: #052422;
+        --card-bg: #0b3533;
+    }
+
+    body {
+        background: var(--verde-escuro);
+        color: white;
+    }
+
+    .card {
+        background: var(--card-bg);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    }
+
+    h1 {
+        color: var(--verde-limao);
+        font-weight: 900;
+    }
+
+    @media (max-width: 768px) {
+        h1 { font-size: 1.4rem; }
+        .periodo { font-size: 1rem; }
+        .card p { font-size: 1.3rem; }
+    }
+	
+	/* ---- BOTÃO VOLTAR ---- */
+    .btn-voltar {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: #d6ff77;
+        color: #0d2d27;
+        padding: 12px 16px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 600;
+        box-shadow: 0 0 10px rgba(214,255,119,0.5);
+        transition: 0.2s;
+    }
+
+    .btn-voltar:hover {
+        background: #c4f35f;
+        box-shadow: 0 0 14px rgba(214,255,119,0.75);
+        transform: translateY(-2px);
+    }
+
+</style>
+</head>
+
+<body>
+<!-- BOTÃO VOLTAR -->
+<a href="dashboard.html" class="btn-voltar">🏠</a><a href="dashboard.html" class="btn-voltar">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10.5L12 3l9 7.5" />
+        <path d="M5 10v10a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4h2v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V10" />
+    </svg>
+</a>
+
+<nav style="display:flex; gap:15px; justify-content:center; margin-bottom:30px;">
+    <style>
+        .mes-btn {
+            padding: 12px 26px;
+            background: #e5e5e5;
+            border: none;
+            border-radius: 50px;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            box-shadow: 0 0 6px rgba(0,0,0,0.15);
+            transition: 0.25s ease-in-out;
+        }
+        .mes-btn:hover {
+            background: #f2f2f2;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+        }
+        .mes-btn.active {
+            background: #bfbfbf;
+            color: #111;
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.25);
+            transform: translateY(-1px);
+        }
+    </style>
+	<!--<button class="mes-btn home-btn" onclick="voltarHome()">🏠</button>-->
+    <button class="mes-btn" onclick="ativarMes(this,'jan')">Janeiro</button>
+    <button class="mes-btn" onclick="ativarMes(this,'fev')">Fevereiro</button>
+    <button class="mes-btn" onclick="ativarMes(this,'mar')">Março</button>
+    <button class="mes-btn" onclick="ativarMes(this,'abr')">Abril</button>
+    <button class="mes-btn" onclick="ativarMes(this,'mai')">Maio</button>
+    <button class="mes-btn" onclick="ativarMes(this,'jun')">Junho</button>
+	<button class="mes-btn" onclick="ativarMes(this,'resumo')">Resumo</button>
+</nav>
+<script>
+function ativarMes(btn, mes){
+    document.querySelectorAll('.mes').forEach(e=>e.style.display='none');
+    document.getElementById(mes).style.display='block';
+    document.querySelectorAll('.mes-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+}
+</script>
+<script>
+function mostrarMes(mes){
+    document.querySelectorAll('.mes').forEach(e=>e.style.display='none');
+    document.getElementById(mes).style.display='block';
+}
+</script>
+
+
+<h1>Resultado Mídias Sociais (2025) - Janeiro a Junho</h1>
+
+<!-- JANEIRO 2025 -->
+<div id="jan" class="mes" style="display:block;">
+<div class="periodo">📅 Período de <strong>janeiro 2025</strong> (Instagram / Facebook)</div>
+<!--<h2 style='text-align:center;color:#ccff00;'>Janeiro - Resultado das Páginas</h2>-->
+<div class="container">
+    <div class="card"><h3>Alcance</h3><p><span style="color:yellow;">95.088</span></p></div>
+    <div class="card"><h3>Engajamento</h3><p><span style="color:yellow;">5</span></p></div>
+    <div class="card"><h3>Visualizações</h3><p><span style="color:yellow;">209.539</span></p></div>
+    <div class="card"><h3>Interações</h3><p><span style="color:yellow;">776</span></p></div>
+
+    <div class="subtitle-box">
+        <p style="font-size: 20px;">❤️ Curtidas: <span style="color:yellow;">761</span></p>
+        <p style="font-size: 20px;">💬 Comentários: <span style="color:yellow;">3</span></p>
+        <p style="font-size: 20px;">🔁 Compartilhamentos: <span style="color:yellow;">5</span></p>
+        <p style="font-size: 20px;">🔗 Cliques em links do perfil: <span style="color:yellow;">18</span></p>
+    </div>
+
+    <div class="card"><h3>Novos Seguidores</h3><p><span style="color:yellow;">26</span></p></div>
+    
+    <div class="card"><h3>Maior média de faixa etária de acessos</h3><p><span style="color:yellow;">de 35 a 44 anos</span></p></div>
+
+    <div class="card"><h3>Total de Stories Publicados/Mês</h3><p><span style="color:yellow;">18</span></p></div>
+    <div class="card"><h3>Total de Visualizações (Stories)</h3><p><span style="color:yellow;">968</span></p></div>
+    <div class="card"><h3>Média de Visualizações/Story</h3><p><span style="color:yellow;">81</span></p></div>
+
+    <div class="card"><h3>Total de Posts</h3><p><span style="color:yellow;">12</span></p></div>
+    <div class="card"><h3>Total de Interações</h3><p><span style="color:yellow;">56</span></p></div>
+    <div class="card"><h3>Média de Visualizações por Post</h3><p><span style="color:yellow;">100</span></p></div>
+    <div class="card"><h3>Média de Engajamento por Post</h3><p><span style="color:yellow;">7,28%</span></p></div>
+	
+	<div class="subtitle-box">
+        <p style="font-size: 20px;"> Total de Curtidas (Pag. Facebook): <span style="color:yellow;">28</span></p>
+        <p style="font-size: 20px;"> Total de Interações dos Conteúdos (Facebook): <span style="color:yellow;">799</span></p>
+        <p style="font-size: 20px;"> Total de Curtidas (Geral): <span style="color:yellow;">767</span></p>
+    </div>
+	
+<div class="subtitle-box"><h2><span style="color:yellow;">META ADS (Facebook & Instagram)</span></h2></div>
+	<div class="subtitle-box">
+		<p style="font-size: 20px;"> Total de Campanhas: <span style="color:yellow;">12</span></p>
+        <p style="font-size: 20px;"> Alcance: <span style="color:yellow;">259,3 mil</span></p>
+        <p style="font-size: 20px;"> Custo por 1000 impressões: <span style="color:yellow;">1,83 (média)</span></p>
+        <p style="font-size: 20px;"> Visualizações: <span style="color:yellow;">405,4 mil</span></p>
+        <p style="font-size: 20px;"> Cliques nos links: <span style="color:yellow;">65</span></p>
+		<p style="font-size: 20px;"> Engajamentos com Posts: <span style="color:yellow;">1.727</span></p>
+        <p style="font-size: 20px;"> CTR: <span style="color:yellow;">1,3%</span></p>
+    </div>
+	<div class="card"><h3>Total de Leads/Mês</h3><p><span style="color:yellow;">49</span></p></div>
+	<div class="card"><h3>Total de Vendas Confirmadas/Mês</h3><p><span style="color:yellow;">Inconclusivo por falta de resultados</span></p></div>
+	<div class="card"><h3>Percentual de Vendas/Indicação</h3><p><span style="color:yellow;">0%</span></p></div>
+    </div>
+</div>
+<!-- FIM DE JANEIRO 2025 -->
+
+<!-- FEVEREIRO 2025 -->
+<div id="fev" class="mes" style="display:none;">
+<div class="periodo">📅 Período de <strong>fevereiro 2025</strong> (Instagram / Facebook)</div>
+<div class="container">
+
+    <div class="card"><h3>Alcance</h3><p><span style="color:yellow;">14.717</span></p></div>
+    <div class="card"><h3>Engajamento</h3><p><span style="color:yellow;">3</span></p></div>
+    <div class="card"><h3>Visualizações</h3><p><span style="color:yellow;">23.201</span></p></div>
+    <div class="card"><h3>Interações</h3><p><span style="color:yellow;">56</span></p></div>
+
+    <div class="subtitle-box">
+        <p style="font-size: 20px;">❤️ Curtidas: <span style="color:yellow;">53</span></p>
+        <p style="font-size: 20px;">💬 Comentários: <span style="color:yellow;">4</span></p>
+        <p style="font-size: 20px;">🔁 Compartilhamentos: <span style="color:yellow;">2</span></p>
+        <p style="font-size: 20px;">🔗 Cliques em links do perfil: <span style="color:yellow;">5</span></p>
+    </div>
+
+    <div class="card"><h3>Novos Seguidores</h3><p><span style="color:yellow;">25</span></p></div>
+
+    <div class="card"><h3>Total de Stories Publicados/Mês</h3><p><span style="color:yellow;">17</span></p></div>
+    <div class="card"><h3>Total de Visualizações (Stories)</h3><p><span style="color:yellow;">1.400</span></p></div>
+    <div class="card"><h3>Média de Visualizações/Story</h3><p><span style="color:yellow;">82</span></p></div>
+
+    <div class="card"><h3>Total de Posts</h3><p><span style="color:yellow;">5</span></p></div>
+    
+    <div class="card"><h3>Média de Visualizações por Post</h3><p><span style="color:yellow;">136</span></p></div>
+    <div class="card"><h3>Média de Engajamento por Post</h3><p><span style="color:yellow;">9,67%</span></p></div>
+
+    <div class="subtitle-box">
+        <p style="font-size: 20px;"> Total de Curtidas (Pag. Facebook): <span style="color:yellow;">5</span></p>
+        <p style="font-size: 20px;"> Total de Interações dos Conteúdos (Facebook): <span style="color:yellow;">17</span></p>
+        <p style="font-size: 20px;"> Total de Curtidas (Geral): <span style="color:yellow;">13</span></p>
+    </div>
+
+    <div class="subtitle-box"><h2><span style="color:yellow;">META ADS (Facebook & Instagram)</span></h2></div>
+
+    <div class="subtitle-box">
+        <p style="font-size: 20px;"> Total de Campanhas: <span style="color:yellow;">5</span></p>
+        <p style="font-size: 20px;"> Alcance: <span style="color:yellow;">13,9 mil</span></p>
+        <p style="font-size: 20px;"> Custo por 1000 impressões: <span style="color:yellow;">R$ 0,16 (média)</span></p>
+        <p style="font-size: 20px;"> Visualizações: <span style="color:yellow;">16,6 mil</span></p>
+        <p style="font-size: 20px;"> Cliques nos links: <span style="color:yellow;">92</span></p>
+        <p style="font-size: 20px;"> Engajamentos com Posts: <span style="color:yellow;">1.091</span></p>
+        <p style="font-size: 20px;"> CTR: <span style="color:yellow;">0,9%</span></p>
+    </div>
+
+    <div class="card"><h3>Total de Leads/Mês</h3><p><span style="color:yellow;">43</span></p></div>
+    <div class="card"><h3>Total de Vendas Confirmadas/Mês</h3><p><span style="color:yellow;">2</span></p></div>
+    <div class="card"><h3>Percentual de Vendas/Indicação</h3><p><span style="color:yellow;">4,65%</span></p></div>
+
+</div>
+</div>
+<!-- FIM DE FEVEREIRO 2025 -->
+
+<!-- MARÇO 2025 -->
+<div id="mar" class="mes" style="display:none;">
+<div class="periodo">📅 Período de <strong>março 2025</strong> (Instagram / Facebook)</div>
+<div class="container">
+
+    <div class="card"><h3>Alcance</h3><p><span style="color:yellow;">19.552</span></p></div>
+<div class="card"><h3>Engajamento</h3><p><span style="color:yellow;">6</span></p></div>
+<div class="card"><h3>Visualizações</h3><p><span style="color:yellow;">34.178</span></p></div>
+<div class="card"><h3>Interações</h3><p><span style="color:yellow;">81</span></p></div>
+
+<div class="subtitle-box">
+    <p style="font-size: 20px;">❤️ Curtidas: <span style="color:yellow;">78</span></p>
+    <p style="font-size: 20px;">💬 Comentários: <span style="color:yellow;">2</span></p>
+    <p style="font-size: 20px;">🔁 Compartilhamentos: <span style="color:yellow;">3</span></p>
+    <p style="font-size: 20px;">🔗 Cliques em links do perfil: <span style="color:yellow;">7</span></p>
+</div>
+
+<div class="card"><h3>Novos Seguidores</h3><p><span style="color:yellow;">45</span></p></div>
+
+<div class="card"><h3>Total de Stories Publicados/Mês</h3><p><span style="color:yellow;">16</span></p></div>
+<div class="card"><h3>Total de Visualizações (Stories)</h3><p><span style="color:yellow;">1.169</span></p></div>
+<div class="card"><h3>Média de Visualizações/Story</h3><p><span style="color:yellow;">73</span></p></div>
+
+<div class="card"><h3>Total de Posts</h3><p><span style="color:yellow;">7</span></p></div>
+
+<div class="card"><h3>Média de Visualizações por Post</h3><p><span style="color:yellow;">136</span></p></div>
+<div class="card"><h3>Média de Engajamento por Post</h3><p><span style="color:yellow;">12,50%</span></p></div>
+
+<div class="subtitle-box">
+    <p style="font-size: 20px;"> Total de Curtidas (Pag. Facebook): <span style="color:yellow;">4</span></p>
+    <p style="font-size: 20px;"> Total de Interações dos Conteúdos (Facebook): <span style="color:yellow;">774</span></p>
+    <p style="font-size: 20px;"> Total de Curtidas (Geral): <span style="color:yellow;">730</span></p>
+</div>
+
+<div class="subtitle-box"><h2><span style="color:yellow;">META ADS (Facebook & Instagram)</span></h2></div>
+
+<div class="subtitle-box">
+    <p style="font-size: 20px;"> Total de Campanhas: <span style="color:yellow;">7</span></p>
+    <p style="font-size: 20px;"> Alcance: <span style="color:yellow;">214,6 mil</span></p>
+    <p style="font-size: 20px;"> Custo (Média): <span style="color:yellow;">R$ 0,63</span></p>
+    <p style="font-size: 20px;"> Visualizações: <span style="color:yellow;">392,4 mil</span></p>
+    <p style="font-size: 20px;"> Cliques nos links: <span style="color:yellow;">5,4 mil</span></p>
+    <p style="font-size: 20px;"> Engajamentos com Posts: <span style="color:yellow;">6,3 mil</span></p>
+    <p style="font-size: 20px;"> CTR (Média): <span style="color:yellow;">1,15%</span></p>
+</div>
+
+<div class="card"><h3>Total de Leads/Mês</h3><p><span style="color:yellow;">67</span></p></div>
+<div class="card"><h3>Total de Vendas Confirmadas/Mês</h3><p><span style="color:yellow;">4</span></p></div>
+<div class="card"><h3>Percentual de Vendas/Indicação</h3><p><span style="color:yellow;">5,97%</span></p></div>
+
+
+</div>
+</div>
+<!-- FIM DE MARÇO 2025 -->
+
+<!-- ABRIL 2025 -->
+<div id="abr" class="mes" style="display:none;">
+<div class="periodo">📅 Período de <strong>abril 2025</strong> (Instagram / Facebook)</div>
+<div class="container">
+
+   <div class="card"><h3>Alcance</h3><p><span style="color:yellow;">20.171</span></p></div>
+<div class="card"><h3>Engajamento</h3><p><span style="color:yellow;">4</span></p></div>
+<div class="card"><h3>Visualizações</h3><p><span style="color:yellow;">2.217</span></p></div>
+<div class="card"><h3>Interações</h3><p><span style="color:yellow;">115</span></p></div>
+
+<div class="subtitle-box">
+    <p style="font-size: 20px;">❤️ Curtidas: <span style="color:yellow;">108</span></p>
+    <p style="font-size: 20px;">💬 Comentários: <span style="color:yellow;">3</span></p>
+    <p style="font-size: 20px;">🔁 Compartilhamentos: <span style="color:yellow;">3</span></p>
+    <p style="font-size: 20px;">🔗 Cliques em links do perfil: <span style="color:yellow;">7</span></p>
+</div>
+
+<div class="card"><h3>Novos Seguidores</h3><p><span style="color:yellow;">37</span></p></div>
+
+<div class="card"><h3>Total de Stories Publicados/Mês</h3><p><span style="color:yellow;">16</span></p></div>
+<div class="card"><h3>Total de Visualizações (Stories)</h3><p><span style="color:yellow;">264</span></p></div>
+<div class="card"><h3>Média de Visualizações/Story</h3><p><span style="color:yellow;">17</span></p></div>
+
+<div class="card"><h3>Total de Posts</h3><p><span style="color:yellow;">7</span></p></div>
+
+<div class="card"><h3>Média de Visualizações por Post</h3><p><span style="color:yellow;">13</span></p></div>
+<div class="card"><h3>Média de Engajamento por Post</h3><p><span style="color:yellow;">10,18%</span></p></div>
+
+<div class="subtitle-box">
+    <p style="font-size: 20px;"> Total de Curtidas (Pag. Facebook): <span style="color:yellow;">14</span></p>
+    <p style="font-size: 20px;"> Total de Interações dos Conteúdos (Facebook): <span style="color:yellow;">390</span></p>
+    <p style="font-size: 20px;"> Total de Curtidas (Geral): <span style="color:yellow;">363</span></p>
+
+</div>
+
+<div class="subtitle-box"><h2><span style="color:yellow;">META ADS Facebook & Instagram</span></h2></div>
+
+<div class="subtitle-box">
+    <p style="font-size: 20px;"> Campanhas: <span style="color:yellow;">8</span></p>
+    <p style="font-size: 20px;"> Alcance: <span style="color:yellow;">56,5 mil</span></p>
+    <p style="font-size: 20px;"> Custo por 1000 impressões: <span style="color:yellow;">R$ 0,37</span></p>
+    <p style="font-size: 20px;"> Visualizações: <span style="color:yellow;">111,9 mil</span></p>
+    <p style="font-size: 20px;"> Cliques nos links: <span style="color:yellow;">938</span></p>
+    <p style="font-size: 20px;"> Engajamentos com Posts: <span style="color:yellow;">1.389</span></p>
+    <p style="font-size: 20px;"> CTR: <span style="color:yellow;">0,84%</span></p>
+</div>
+
+<div class="card"><h3>Total de Leads/Mês</h3><p><span style="color:yellow;">67</span></p></div>
+<div class="card"><h3>Total de Vendas Confirmadas/Mês</h3><p><span style="color:yellow;">7</span></p></div>
+<div class="card"><h3>Percentual de Vendas/Indicação</h3><p><span style="color:yellow;">10,45%</span></p></div>
+
+</div>
+</div>
+<!-- FIM DE ABRIL 2025 -->
+
+<!-- MAIO 2025 -->
+<div id="mai" class="mes" style="display:none;">
+<div class="periodo">📅 Período de <strong>maio 2025</strong> (Instagram / Facebook)</div>
+<div class="container">
+
+<div class="card"><h3>Alcance</h3><p><span style="color:yellow;">1.762</span></p></div>
+<div class="card"><h3>Engajamento</h3><p><span style="color:yellow;">564</span></p></div>
+<div class="card"><h3>Visualizações</h3><p><span style="color:yellow;">3.745</span></p></div>
+<div class="card"><h3>Interações</h3><p><span style="color:yellow;">568</span></p></div>
+
+<div class="subtitle-box">
+    <p style="font-size: 20px;">❤️ Curtidas: <span style="color:yellow;">559</span></p>
+    <p style="font-size: 20px;">💬 Comentários: <span style="color:yellow;">7</span></p>
+    <p style="font-size: 20px;">🔁 Compartilhamentos: <span style="color:yellow;">3</span></p>
+    <p style="font-size: 20px;">🔗 Cliques em links do perfil: <span style="color:yellow;">568</span></p>
+</div>
+
+<div class="card"><h3>Novos Seguidores</h3><p><span style="color:yellow;">35</span></p></div>
+
+<div class="card"><h3>Total de Stories Publicados/Mês</h3><p><span style="color:yellow;">13</span></p></div>
+<div class="card"><h3>Total de Visualizações (Stories)</h3><p><span style="color:yellow;">8</span></p></div>
+<div class="card"><h3>Média de Visualizações/Story</h3><p><span style="color:yellow;">7</span></p></div>
+
+<div class="card"><h3>Total de Posts</h3><p><span style="color:yellow;">8</span></p></div>
+
+<div class="card"><h3>Média de Visualizações por Post</h3><p><span style="color:yellow;">85</span></p></div>
+<div class="card"><h3>Média de Engajamento por Post</h3><p><span style="color:yellow;">11,75%</span></p></div>
+
+<div class="subtitle-box">
+    <p style="font-size: 20px;"> Total de Curtidas (Pag. Facebook): <span style="color:yellow;">7</span></p>
+    <p style="font-size: 20px;"> Total de Interações dos Conteúdos (Facebook): <span style="color:yellow;">1.097</span></p>
+    <p style="font-size: 20px;"> Total de Curtidas (Geral): <span style="color:yellow;">1.053</span></p>
+</div>
+
+<div class="subtitle-box"><h2><span style="color:yellow;">META ADS Facebook & Instagram</span></h2></div>
+
+<div class="subtitle-box">
+    <p style="font-size: 20px;"> Campanhas: <span style="color:yellow;">6</span></p>
+    <p style="font-size: 20px;"> Alcance: <span style="color:yellow;">31,4 mil</span></p>
+    <p style="font-size: 20px;"> Custo por 1000 impressões: <span style="color:yellow;">R$ 1,12</span></p>
+    <p style="font-size: 20px;"> Visualizações: <span style="color:yellow;">74,6 mil</span></p>
+    <p style="font-size: 20px;"> Cliques nos links: <span style="color:yellow;">256</span></p>
+    <p style="font-size: 20px;"> Engajamentos com Posts: <span style="color:yellow;">8,7 mil</span></p>
+    <p style="font-size: 20px;"> CTR: <span style="color:yellow;">1,2%</span></p>
+</div>
+
+<div class="card"><h3>Total de Leads/Mês</h3><p><span style="color:yellow;">78</span></p></div>
+<div class="card"><h3>Total de Vendas Confirmadas/Mês</h3><p><span style="color:yellow;">11</span></p></div>
+<div class="card"><h3>Percentual de Vendas/Indicação</h3><p><span style="color:yellow;">14,10%</span></p></div>
+
+
+</div>
+</div>
+<!-- FIM DE MAIO 2025 -->
+
+<!-- JUNHO 2025 -->
+<div id="jun" class="mes" style="display:none;">
+<div class="periodo">📅 Período de <strong>junho 2025</strong> (Instagram / Facebook)</div>
+<div class="container">
+
+<div class="card"><h3>Alcance</h3><p><span style="color:yellow;">3.407</span></p></div>
+<div class="card"><h3>Engajamento</h3><p><span style="color:yellow;">36</span></p></div>
+<div class="card"><h3>Visualizações</h3><p><span style="color:yellow;">6.567</span></p></div>
+<div class="card"><h3>Interações</h3><p><span style="color:yellow;">39</span></p></div>
+
+<div class="subtitle-box">
+    <p style="font-size: 20px;">❤️ Curtidas: <span style="color:yellow;">32</span></p>
+    <p style="font-size: 20px;">💬 Comentários: <span style="color:yellow;">6</span></p>
+    <p style="font-size: 20px;">🔁 Compartilhamentos: <span style="color:yellow;">3</span></p>
+    <p style="font-size: 20px;">🔗 Cliques em links do perfil: <span style="color:yellow;">7</span></p>
+</div>
+
+<div class="card"><h3>Novos Seguidores</h3><p><span style="color:yellow;">30</span></p></div>
+
+<div class="card"><h3>Total de Stories Publicados/Mês</h3><p><span style="color:yellow;">5</span></p></div>
+<div class="card"><h3>Total de Visualizações (Stories)</h3><p><span style="color:yellow;">15</span></p></div>
+<div class="card"><h3>Média de Visualizações/Story</h3><p><span style="color:yellow;">3</span></p></div>
+
+<div class="card"><h3>Total de Posts</h3><p><span style="color:yellow;">6</span></p></div>
+
+<div class="card"><h3>Média de Visualizações por Post</h3><p><span style="color:yellow;">569</span></p></div>
+<div class="card"><h3>Média de Engajamento por Post</h3><p><span style="color:yellow;">2,99%</span></p></div>
+
+<div class="subtitle-box">
+    <p style="font-size: 20px;"> Total de Curtidas (Pag. Facebook): <span style="color:yellow;">7</span></p>
+    <p style="font-size: 20px;"> Total de Interações dos Conteúdos (Facebook): <span style="color:yellow;">18</span></p>
+    <p style="font-size: 20px;"> Total de Curtidas (Geral): <span style="color:yellow;">18</span></p>
+</div>
+
+<div class="subtitle-box"><h2><span style="color:yellow;">META ADS Facebook & Instagram</span></h2></div>
+
+<div class="subtitle-box">
+    <p style="font-size: 20px;"> Campanhas: <span style="color:yellow;">8</span></p>
+    <p style="font-size: 20px;"> Alcance: <span style="color:yellow;">32.9 mil</span></p>
+    <p style="font-size: 20px;"> Custo por Lead: <span style="color:yellow;">R$ 30,31</span></p>
+    <p style="font-size: 20px;"> Visualizações: <span style="color:yellow;">69,1 mil</span></p>
+    <p style="font-size: 20px;"> Cliques nos links: <span style="color:yellow;">950</span></p>
+    <p style="font-size: 20px;"> Engajamentos com Posts: <span style="color:yellow;">16,2 mil</span></p>
+    <p style="font-size: 20px;"> CTR: <span style="color:yellow;">5,60%</span></p>
+</div>
+
+<div class="card"><h3>Total de Leads/Mês</h3><p><span style="color:yellow;">59</span></p></div>
+<div class="card"><h3>Total de Vendas Confirmadas/Mês</h3><p><span style="color:yellow;">9</span></p></div>
+<div class="card"><h3>Percentual de Vendas/Indicação</h3><p><span style="color:yellow;">15,25%</span></p></div>
+</div>
+</div>
+<!-- FIM DE JUNHO 2025 -->
+
+<!-- RESUMO JAN-JUN 2025 -->
+<div id="resumo" class="mes" style="display:none;">
+<div class="periodo">📅 Período de <strong>janeiro a junho 2025</strong> (Instagram / Facebook)</div>
+<div class="container">
+
+
+<div class="card"><h3>Alcance Total</h3><p><span style="color:yellow;">154.697</span></p></div>
+<div class="card"><h3>Engajamento Total</h3><p><span style="color:yellow;">618</span></p></div>
+<div class="card"><h3>Visualizações Totais</h3><p><span style="color:yellow;">279.447</span></p></div>
+<div class="card"><h3>Interações Totais</h3><p><span style="color:yellow;">1.635</span></p></div>
+
+
+<div class="subtitle-box">
+<p style="font-size: 20px;">❤️ Curtidas Totais: <span style="color:yellow;">1.591</span></p>
+<p style="font-size: 20px;">💬 Comentários Totais: <span style="color:yellow;">25</span></p>
+<p style="font-size: 20px;">🔁 Compartilhamentos Totais: <span style="color:yellow;">19</span></p>
+<p style="font-size: 20px;">🔗 Totais de Cliques em links do perfil: <span style="color:yellow;">612</span></p>
+</div>
+
+
+<div class="card"><h3>Novos Seguidores (Total)</h3><p><span style="color:yellow;">198</span></p></div>
+
+
+<div class="card"><h3>Total de Stories Publicados</h3><p><span style="color:yellow;">85</span></p></div>
+<div class="card"><h3>Total de Visualizações (Stories)</h3><p><span style="color:yellow;">3.824</span></p></div>
+<div class="card"><h3>Média de Visualizações/Story</h3><p><span style="color:yellow;">45</span></p></div>
+
+
+<div class="card"><h3>Total de Posts</h3><p><span style="color:yellow;">45</span></p></div>
+
+
+<div class="card"><h3>Média de Visualizações por Post</h3><p><span style="color:yellow;">6.211</span></p></div>
+<div class="card"><h3>Média de Engajamento por Post (simples)</h3><p><span style="color:yellow;">13,73</span></p></div>
+
+
+<div class="subtitle-box">
+<p style="font-size: 20px;"> Total de Curtidas (Pag. Facebook) (soma): <span style="color:yellow;">65</span></p>
+<p style="font-size: 20px;"> Total de Interações dos Conteúdos (Facebook) (soma): <span style="color:yellow;">4.075</span></p>
+<p style="font-size: 20px;"> Total de Curtidas (Geral) (soma): <span style="color:yellow;">2.944</span></p>
+</div>
+
+
+<div class="subtitle-box"><h2><span style="color:yellow;">META ADS Facebook & Instagram (Totais)</span></h2></div>
+
+
+<div class="subtitle-box">
+<p style="font-size: 20px;"> Campanhas (Total): <span style="color:yellow;">46</span></p>
+<p style="font-size: 20px;"> Alcance (Total): <span style="color:yellow;">608.600</span></p>
+<p style="font-size: 20px;"> Visualizações (Total): <span style="color:yellow;">1.070.000</span></p>
+<p style="font-size: 20px;"> Cliques nos links (Total): <span style="color:yellow;">7.701</span></p>
+<p style="font-size: 20px;"> Engajamentos com Posts (Total): <span style="color:yellow;">35.407</span></p>
+<p style="font-size: 20px;"> CTR (ponderado): <span style="color:yellow;">0,72%</span></p>
+</div>
+
+
+<div class="card"><h3>Total de Leads (Jan-Jun)</h3><p><span style="color:yellow;">363</span></p></div>
+<div class="card"><h3>Total de Vendas Confirmadas (Jan-Jun)</h3><p><span style="color:yellow;">33</span></p></div>
+<div class="card"><h3>Percentual de Vendas/Indicação (simples)</h3><p><span style="color:yellow;">9,09%</span></p></div>
+</div>
+</div>
+<!-- FIM RESUMO JAN-JUN 2025 -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Exemplo de gráfico de Alcance por mês
+const ctx1 = document.getElementById('graficoAlcance');
+new Chart(ctx1, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+        datasets: [{
+            label: 'Alcance',
+            data: [95088, 0, 0, 0, 0, 0],
+            borderWidth: 2
+        }]
+    }
+});
+</script>
+<div id="fev" class="mes" style="display:none;">
+<h2 style='text-align:center;color:#ccff00;'>Fevereiro</h2>
+<div class="container">
+    <div class="card"><h3>Alcance</h3><p>14.717</p></div>
+    <div class="card"><h3>Engajamento</h3><p>3</p></div>
+    <div class="card"><h3>Visualizações</h3><p>23.201</p></div>
+    <div class="card"><h3>Interações</h3><p>56</p></div>
+    <div class="subtitle-box">
+        <p>❤️ Curtidas: 53</p>
+        <p>💬 Comentários: 0</p>
+        <p>🔁 Compartilhamentos: 1</p>
+        <p>🔗 Cliques no perfil: 5</p>
+    </div>
+    <div class="card"><h3>Novos Seguidores</h3><p>25</p></div>
+    <div class="card"><h3>Acessos Homens</h3><p>542</p></div>
+    <div class="card"><h3>Acessos Mulheres</h3><p>1000</p></div>
+    <div class="card"><h3>Maior faixa etária</h3><p>35 a 44 anos</p></div>
+    <div class="card"><h3>Total de Leads</h3><p>43</p></div>
+    <div class="card"><h3>Total de Stories</h3><p>17</p></div>
+    <div class="card"><h3>Total Visualizações Stories</h3><p>1400</p></div>
+    <div class="card"><h3>Média por Story</h3><p>82</p></div>
+    <div class="card"><h3>Total de Posts</h3><p>5</p></div>
+    <div class="card"><h3>Total Interações</h3><p>49</p></div>
+    <div class="card"><h3>Média Interações por Post</h3><p>10</p></div>
+    <div class="card"><h3>Média Visualizações Post</h3><p>136</p></div>
+    <div class="card"><h3>Engajamento por Post</h3><p>9,67%</p></div>
+    <div class="card"><h3>Curtidas Pagas</h3><p>5</p></div>
+    <div class="card"><h3>Total Interações Geral</h3><p>17</p></div>
+    <div class="card"><h3>Total Curtidas Geral</h3><p>13</p></div>
+    <div class="card"><h3>Total Campanhas</h3><p>9</p></div>
+</div>
+</div>
+<div id="mar" class="mes" style="display:none;">
+<h2 style='text-align:center;color:#ccff00;'>Março</h2>
+<p style='text-align:center;opacity:0.7;'>Aguardando dados...</p>
+</div>
+<div id="abr" class="mes" style="display:none;">
+<h2 style='text-align:center;color:#ccff00;'>Abril</h2>
+<p style='text-align:center;opacity:0.7;'>Aguardando dados...</p>
+</div>
+<div id="mai" class="mes" style="display:none;">
+<h2 style='text-align:center;color:#ccff00;'>Maio</h2>
+<p style='text-align:center;opacity:0.7;'>Aguardando dados...</p>
+</div>
+<div id="jun" class="mes" style="display:none;">
+<h2 style='text-align:center;color:#ccff00;'>Junho</h2>
+<p style='text-align:center;opacity:0.7;'>Aguardando dados...</p>
+</div>
+
+<script>
+function voltarHome() {
+    window.location.href = "dashboard.html";
+}
+</script>
+
+<!-- RODAPÉ COMPLETO -->
+<style>
+    .footer {
+        width: 100%;
+        text-align: center;
+        padding: 25px 0;
+        margin-top: 60px;
+        color: #d6ff77; /* verde-limão claro */
+        font-size: 16px;
+        font-weight: 500;
+        border-top: 1px solid rgba(214,255,119,0.25);
+        background: #0d2d27; /* fundo do dashboard */
+        opacity: 0.85;
+    }
+    .footer:hover {
+        opacity: 1;
+    }
+</style>
+
+<footer class="footer">
+    <p>© 2025 ENVIDA RIO – Dashboard de Marketing e Performance</p>
+</footer>
+
+</body>
+</html>

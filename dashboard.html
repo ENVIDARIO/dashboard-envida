@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<title>Dashboard Simples</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: #e5e7eb; /* cinza claro profissional */
+    }
+    .sidebar {
+        width: 280px;
+        height: 100vh;
+        background: #0d2d27; /* ✅ NOVA COR DO MENU LATERAL */
+        padding-top: 30px;
+        position: fixed;
+        color: #fff;
+    }
+    .sidebar h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+    .sidebar a {
+    display: block;
+    padding: 12px 20px;
+    margin: 14px; /* Aumentado de 8px para 14px */
+    background: #34495e;
+    text-decoration: none;
+    color: white;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+    .sidebar a:hover {
+        background: #1abc9c;
+    }
+
+    .content {
+        margin-left: 280px;
+        padding: 40px;
+        background: #f3f4f6;
+        min-height: 100vh;
+    }
+
+    .dashboard-card {
+        background: white;
+        padding: 35px;
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+        border: 1px solid #e5e7eb;
+        max-width: 950px;
+    }
+
+    .dashboard-card h1 {
+        margin-top: 0;
+        font-size: 32px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 20px;
+    }
+
+    .dashboard-card p {
+        font-size: 17px;
+        color: #374151;
+        line-height: 1.7;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="logo-box">
+        <center><img src="img/logo.png" alt="Envida Rio" class="logo"></center>
+    </div>
+    <a href="google_analytics.html">Google Analytics</a>
+    <a href="google_SC.html">Google Search Console</a>
+    <a href="midias_sociais.html">Mídias Sociais</a>
+    <a href="ferramentas.html">Ferramentas Utilizadas</a>
+</div>
+
+<div class="content">
+
+    <div class="dashboard-card">
+        <h1>Bem-vindo ao Dashboard</h1>
+
+        <p>
+            Este painel apresenta os principais resultados das estratégias de marketing
+            digital da Envida Rio em 2025, considerando de janeiro a junho.
+        </p>
+
+        <p>
+            A análise inclui dados de desempenho de tráfego, captação de leads e engajamento
+            nas mídias sociais, destacando o impacto das campanhas e oportunidades de 
+            melhorar e otimizar nossa presença online.
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
